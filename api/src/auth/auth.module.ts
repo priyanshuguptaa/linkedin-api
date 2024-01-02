@@ -6,6 +6,7 @@ import { UserEntity } from './models/user.enity';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtGuard } from './guards/jwt.guard';
 import { JwtStrategy } from './guards/jwt.strategy';
+import { RolesGuard } from './guards/roles.guard';
 
 @Module({
   imports: [JwtModule.registerAsync({
@@ -14,7 +15,7 @@ import { JwtStrategy } from './guards/jwt.strategy';
       signOptions: {expiresIn: '3600s'}
     })
   }) ,TypeOrmModule.forFeature([UserEntity])],
-  providers: [AuthService, JwtGuard, JwtStrategy],
+  providers: [AuthService, JwtGuard, JwtStrategy,RolesGuard],
   controllers: [AuthController]
 })
 export class AuthModule {}
