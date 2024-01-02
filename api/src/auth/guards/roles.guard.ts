@@ -3,6 +3,7 @@ import { Reflector } from '@nestjs/core';
 import { Observable } from 'rxjs';
 import { Role } from '../models/role.enum';
 import { ROLES_KEY } from '../decorators/roles.decorator';
+import { User } from '../models/user.interface';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -26,7 +27,7 @@ export class RolesGuard implements CanActivate {
       return true;
     }
 
-    const {user} = context.switchToHttp().getRequest();
+    const {user} : {user : User} = context.switchToHttp().getRequest();
 
     // console.log(context.switchToHttp().getRequest())
 
